@@ -29,15 +29,9 @@ each element of array A is an integer within the range [1..1,000,000,000];
 all but one of the values in A occur an even number of times.
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 using System;
-// you can also use other imports, for example:
-// using System.Collections.Generic;
-
-// you can write to stdout for debugging purposes, e.g.
-// Console.WriteLine("this is a debug message");
 
 class Solution {
-    public int solution(int[] A) {
-        // write your code in C# 6.0 with .NET 4.5 (Mono)
+    public int solution(int[] A) {        
         if(A.Length==1)
             return A[0];
         Array.Sort(A);

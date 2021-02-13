@@ -24,15 +24,9 @@ X, Y and D are integers within the range [1..1,000,000,000];
 X ≤ Y.
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 using System;
-// you can also use other imports, for example:
-// using System.Collections.Generic;
-
-// you can write to stdout for debugging purposes, e.g.
-// Console.WriteLine("this is a debug message");
-
 class Solution {
     public int solution(int X, int Y, int D) {
-        //return (X-Y)%D == 0 ? (Y-X)/D: (Y-X)/D+1;
+        
         int distance=Y-X;
         int result = (Y-X)/D;
         return result*D+X >=Y ? result : result+1;
