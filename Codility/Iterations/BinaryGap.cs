@@ -15,47 +15,34 @@ Write an efficient algorithm for the following assumptions:
 N is an integer within the range [1..2,147,483,647].
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 
-using System;
+class Solution
+{
+    public int solution(int N)
+    {        
+        int largestGap = 0;
+        int currentGap = 0;
 
-class Solution {
-    public int solution(int N) {       
-
-        int n=N;
-        string returnString = "";
-        do
+        foreach (var i in Convert.ToString(N, 2))
         {
-            returnString += (n % 2).ToString();
-             n /= 2;
-        } while (n != 0);
 
-        char[] charArr = returnString.ToCharArray();
-        Array.Reverse(charArr);
-        
-        int currentGap=0;
-        int biggestGap=0;
+            if (i.Equals('1'))
+            {
 
-        for(int i=0; i<charArr.Length; i++){
-
-            if(charArr[i] - '0'== 0){
-                if(i==charArr.Length - 1){
-
-                    currentGap=0;
-                }else{
-
-                    currentGap++;
+                if (currentGap > largestGap)
+                {
+                    largestGap = currentGap;
                 }
-            }else if(charArr[i] - '0'== 1){
 
-                if(currentGap > biggestGap){
-
-                    biggestGap=currentGap;                                        
-                }
-                currentGap=0;
+                currentGap = 0;
+            }
+            else if (i.Equals('0'))
+            {
+                currentGap++;
             }
         }
-        return biggestGap;
+
+        return largestGap;
     }
-    
 }
 
 

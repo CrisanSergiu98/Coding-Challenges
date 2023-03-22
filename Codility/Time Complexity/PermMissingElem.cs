@@ -23,32 +23,22 @@ the elements of A are all distinct;
 each element of array A is an integer within the range [1..(N + 1)].
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 
-using System;
-
-class Solution {
-    public int solution(int[] A) {
-        if(A.Length==0){
-            return 1;
+class Solution
+{
+    public int solution(int[] A)
+    {
+        int N = A.Length;
+        int xorSum = 0;
+        for (int i = 0; i < N; i++)
+        {
+            //if we XOR the array that has all the elements
+            //with the array that has a missing one
+            //the result will be the missing element
+            //we can do this in a single 'for' statement
+            //and add the last element of the "full" array
+            //in the return statement, isntead of havin 2 "for" statements
+            xorSum = xorSum ^ A[i] ^ (i + 1);
         }
-        if(A.Length==1){
-            return A[0]==1 ? 2: 1;
-        }
-
-        int result=0;
-
-        Array.Sort(A);
-
-        for(int i=0; i<A.Length; i++){
-            if(A[i] != i+1){
-                result = i+1;
-                break;
-            }                
-        }
-        if(result!=0){
-            return result;
-        }else{
-            return A.Length+1;
-        }
-        
+        return xorSum ^ (N + 1);
     }
 }

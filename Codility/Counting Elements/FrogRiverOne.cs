@@ -42,28 +42,27 @@ N and X are integers within the range [1..100,000];
 each element of array A is an integer within the range [1..X].
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 
-using System;
-
-class Solution {
-    public int solution(int X, int[] A) {
-        int solution=0;
+class Solution
+{
+    public int solution(int X, int[] A)
+    {        
         int[] count = new int[X];
-        int counter=0;
-        bool crosed=false;
-        for(int i=0;i<A.Length;i++){
-            
-            if(count[A[i]-1] == 0){
-                count[A[i]-1]++;
+        int counter = 0;
+
+        for (int i = 0; i < A.Length; i++)
+        {
+            A[i]--;
+            if (count[A[i]] == 0)
+            {
+                count[A[i]] = 1;
                 counter++;
             }
-            if(counter==X){
-                solution = i; 
-                crosed=true;               
-                break;
-            }            
+            if (counter == X)
+            {
+                return i;
+            }
         }
-        
-        solution = crosed ? solution : -1;
-        return solution;
+
+        return -1;
     }
 }

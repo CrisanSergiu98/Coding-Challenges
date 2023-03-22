@@ -23,12 +23,19 @@ Write an efficient algorithm for the following assumptions:
 X, Y and D are integers within the range [1..1,000,000,000];
 X ≤ Y.
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
-using System;
-class Solution {
-    public int solution(int X, int Y, int D) {
-        
-        int distance=Y-X;
-        int result = (Y-X)/D;
-        return result*D+X >=Y ? result : result+1;
+
+class Solution
+{
+    public int solution(int X, int Y, int D)
+    {
+        if ((Y - X) % D == 0)
+        {
+            return (Y - X) / D;
+        }
+        else if ((Y - X) % D != 0)
+        {
+            return (Y - X) / D + 1;
+        }
+        return 0;
     }
 }

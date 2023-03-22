@@ -40,29 +40,24 @@ N is an integer within the range [2..100,000];
 each element of array A is an integer within the range [-1,000..1,000].
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.*/
 
-using System;
+class Solution
+{
+    public int solution(int[] A)
+    {
+        // Implement your solution here          
 
-class Solution {
-    public int solution(int[] A) {
-        if(A.Length==2)
-            return Math.Abs(A[0]-A[1]);
+        int sumLeft = A[0];
+        int sumRight = A.Sum() - A[0];
 
-        int s1=A[0];
-        int s2=0;        
+        int minimalDif = int.MaxValue;
 
-        for(int i=1;i<A.Length;i++){
-            s2+=A[i];
+        for (int i = 1; i < A.Length; i++)
+        {
+            minimalDif = Math.Min(minimalDif, Math.Abs(sumLeft - sumRight));
+            sumLeft += A[i];
+            sumRight -= A[i];
         }
 
-        int sum=Math.Abs(s1-s2);
-        int minimal=sum;
-
-        for(int i=1;i<A.Length;i++){  
-            sum=Math.Abs(s1-s2);
-            minimal = sum < minimal ? sum : minimal;
-            s1+=A[i];
-            s2-=A[i];            
-        }
-        return minimal;
+        return minimalDif;
     }
 }

@@ -40,23 +40,31 @@ Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized cop
 using System;
 
 class Solution {
-    public int[] solution(int[] A, int K) {
-        
-        if(A.Length==0){
+    public int[] solution(int[] A, int K)
+    {
+
+        if (A.Length == 0 || K == 0)
+        {
             return A;
         }
-        while(K>0){
-            int lastTerm=A[A.Length-1];
-            int previousTerm=A[0];
-            int currentTerm;
-            for(int i=1;i<A.Length;i++){
-                currentTerm=A[i];
-                A[i]=previousTerm;
-                previousTerm=currentTerm;
+        else
+        {
+            int k = K % A.Length;
+
+            int[] B = new int[A.Length];
+
+            for(int i = 0; i < A.Length; i++)
+            {
+                if (i < k)
+                {
+                    B[i] = A[A.Length - k + i];
+                }
+                else if(i>=k)
+                {
+                    B[i] = A[i - k];
+                }
             }
-            A[0]=lastTerm;
-            K--;
-        }
-        return A;
+            return B;
+        }        
     }
 }
