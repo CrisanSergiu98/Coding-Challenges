@@ -42,9 +42,7 @@ int SliceSum(int[] input, int leftIndex, int rightIndex)
 {
     int[] prefixSums = CountPrefixSums(input);
 
-    return prefixSums[rightIndex + 1] - prefixSums[leftIndex];
-
-    
+    return prefixSums[rightIndex + 1] - prefixSums[leftIndex];    
 }
 
 #endregion
