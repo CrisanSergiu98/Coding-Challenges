@@ -14,7 +14,7 @@ Console.WriteLine(ArrayToStrig(givenArray));
 Console.WriteLine();
 
 Console.WriteLine("PrefixSums Array:");
-Console.WriteLine(ArrayToStrig(PrefixSums(givenArray)));
+Console.WriteLine(ArrayToStrig(CountPrefixSums(givenArray)));
 Console.WriteLine();
 
 Console.WriteLine("SliceSum:");
@@ -26,14 +26,13 @@ Console.WriteLine();
 #endregion
 
 #region Methods
-int[] PrefixSums(int[] input)
+int[] CountPrefixSums(int[] input)
 {
-    int[] returnArray = new int[input.Length];
-    returnArray[0] = input[0];
+    int[] returnArray = new int[input.Length+1];    
 
-    for (int i = 1; i < input.Length; i++)
+    for (int i = 1; i < input.Length+1; i++)
     {
-        returnArray[i] = returnArray[i - 1] + input[i];
+        returnArray[i] = returnArray[i - 1] + input[i-1];
     }
 
     return returnArray;
@@ -41,16 +40,9 @@ int[] PrefixSums(int[] input)
 
 int SliceSum(int[] input, int leftIndex, int rightIndex)
 {
-    int[] prefixSums = PrefixSums(input);
+    int[] prefixSums = CountPrefixSums(input);
 
-    if (leftIndex > 0)
-    {
-        return prefixSums[rightIndex] - prefixSums[leftIndex-1];
-    }
-    else
-    {
-        return prefixSums[rightIndex] - prefixSums[leftIndex];
-    }
+    return prefixSums[rightIndex + 1] - prefixSums[leftIndex];
 
     
 }
